@@ -4,9 +4,17 @@ namespace App\Services;
 
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Collection;
+use App\Services\ImageService;
 
 class ProductService
 {
+    protected ImageService $imageService;
+
+    public function __construct(ImageService $imageService)
+    {
+        $this->imageService = $imageService;
+    }
+
     /**
      * Get all products
      */
@@ -58,6 +66,9 @@ class ProductService
         if (!$product) {
             return false;
         }
+
+        // Delete all product images first
+        $this->imageService->deleteProductImages($product);
 
         $product->delete();
 

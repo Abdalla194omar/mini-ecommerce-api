@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,8 +16,14 @@ Route::middleware('auth:api')->group(function () {
     Route::post('products', [ProductController::class, 'store']);
     Route::put('products/{id}', [ProductController::class, 'update']);
     Route::delete('products/{id}', [ProductController::class, 'destroy']);
+
+    // Image routes
+    Route::post('products/{id}/images', [ImageController::class, 'upload']);
+    Route::delete('images/{id}', [ImageController::class, 'destroy']);
+
 });
 
+// Authentication routes
 Route::prefix('auth')->group(function () {
     // Public auth routes
     Route::post('register', [AuthController::class, 'register']);

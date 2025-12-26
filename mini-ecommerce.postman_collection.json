@@ -1,0 +1,360 @@
+{
+	"info": {
+		"_postman_id": "0b9e0592-8c5f-4a49-a804-c9c0a82c19e1",
+		"name": "mini-ecommerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48662973",
+		"_collection_link": "https://abdalla194omar-6900209.postman.co/workspace/d81e5ff0-9232-4b59-8119-db39ef02d8a7/collection/48662973-0b9e0592-8c5f-4a49-a804-c9c0a82c19e1?action=share&source=collection_link&creator=48662973"
+	},
+	"item": [
+		{
+			"name": "check health",
+			"item": [
+				{
+					"name": "Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}",
+							"host": [
+								"{{baseURL}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Test User 2\",\r\n  \"email\": \"test2@example.com\",\r\n  \"password\": \"password123\",\r\n  \"password_confirmation\": \"password123\",\r\n  \"role\": \"user\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}api/auth/register",
+							"host": [
+								"{{baseURL}}api"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"test2@example.com\",\r\n  \"password\": \"password123\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}api/auth/login",
+							"host": [
+								"{{baseURL}}api"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Authenticated User (ME)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}api/auth/me",
+							"host": [
+								"{{baseURL}}api"
+							],
+							"path": [
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"test2@example.com\",\r\n  \"password\": \"password123\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseURL}}api/auth/logout",
+							"host": [
+								"{{baseURL}}api"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Get All Products",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Test User 2\",\r\n  \"email\": \"test2@example.com\",\r\n  \"password\": \"password123\",\r\n  \"password_confirmation\": \"password123\",\r\n  \"role\": \"user\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseURL}}api/products",
+							"host": [
+								"{{baseURL}}api"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"MacBook Pro M3\",\r\n  \"description\": \"Latest MacBook Pro with M3 chip, 16GB RAM, 512GB SSD\",\r\n  \"price\": 2499.99,\r\n  \"stock\": 15\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}api/products",
+							"host": [
+								"{{baseURL}}api"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Product",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"MacBook Pro M3\",\r\n  \"description\": \"Latest MacBook Pro with M3 chip, 16GB RAM, 512GB SSD\",\r\n  \"price\": 2499.99,\r\n  \"stock\": 15\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}api/products/1",
+							"host": [
+								"{{baseURL}}api"
+							],
+							"path": [
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"MacBook Pro M3\",\r\n  \"description\": \"Latest MacBook Pro with M3 chip, 16GB RAM, 512GB SSD\",\r\n  \"price\": 2499.99,\r\n  \"stock\": 15\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}api/products/1",
+							"host": [
+								"{{baseURL}}api"
+							],
+							"path": [
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Images",
+			"item": [
+				{
+					"name": "Upload Product Images",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "images[]",
+									"type": "file",
+									"src": [
+										"/C:/Users/Abdallah Omar/OneDrive/Pictures/Screenshots 1/Screenshot 2025-12-25 233508.png",
+										"/C:/Users/Abdallah Omar/OneDrive/Pictures/Screenshots 1/Screenshot 2025-12-25 233827.png"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}api/products/2/images",
+							"host": [
+								"{{baseURL}}api"
+							],
+							"path": [
+								"products",
+								"2",
+								"images"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Images",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"MacBook Pro M3\",\r\n  \"description\": \"Latest MacBook Pro with M3 chip, 16GB RAM, 512GB SSD\",\r\n  \"price\": 2499.99,\r\n  \"stock\": 15\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}api/images/2",
+							"host": [
+								"{{baseURL}}api"
+							],
+							"path": [
+								"images",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

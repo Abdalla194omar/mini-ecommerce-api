@@ -18,4 +18,12 @@ class Image extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+    /**
+     * Get full URL for the image
+     */
+    public function getUrlAttribute(): string
+    {
+        return asset('storage/' . $this->path);
+    }
 }
