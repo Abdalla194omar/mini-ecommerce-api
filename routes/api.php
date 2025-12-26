@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -9,6 +10,9 @@ use Illuminate\Support\Facades\Route;
 // Public product routes
 Route::get('products', [ProductController::class, 'index']);
 Route::get('products/{id}', [ProductController::class, 'show']);
+
+// Public comments routes
+Route::get('products/{productId}/comments', [CommentController::class, 'index']);
 
 
 // Protected product routes
@@ -35,6 +39,10 @@ Route::prefix('auth')->group(function () {
         Route::get('me', [AuthController::class, 'me']);
     });
 
+    // Comment routes
+    Route::post('products/{productId}/comments', [CommentController::class, 'store']);
+    Route::put('comments/{id}', [CommentController::class, 'update']);
+    Route::delete('comments/{id}', [CommentController::class, 'destroy']);
 });
 
 ?>

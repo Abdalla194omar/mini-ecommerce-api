@@ -74,4 +74,12 @@ class ProductService
 
         return true;
     }
+
+    /**
+     * Check if product exists
+     */
+    public function exists(int $id): bool
+    {
+        return Product::where('id', $id)->exists();
+    }
 }
