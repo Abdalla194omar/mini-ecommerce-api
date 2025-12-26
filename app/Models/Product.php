@@ -16,6 +16,11 @@ class Product extends Model
         'stock',
     ];
 
+    protected $casts = [
+        'price' => 'decimal:2',
+        'stock' => 'integer'
+    ];
+
     public function images()
     {
         return $this->hasMany(Image::class);
